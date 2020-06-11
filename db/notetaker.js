@@ -8,6 +8,17 @@ const readFileAsync = util.promisify(fs.readFile);
 
 class NoteTaker {
 
+    read() {
+        return readFileAsync('./db/db.json', 'utf8');
+    }
+
+    //get existing notes from db.json and return it JSON.parsed
+    getNotes() {
+        return this.read().then(function(notes) {
+            return JSON.parse(notes);
+        });
+    }
+
     //Adds unique ID to note object and pushes object to existing notes. Writes notes to db.json
     addNote(note) {
 

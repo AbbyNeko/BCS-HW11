@@ -11,9 +11,15 @@ module.exports = function(app) {
 
     app.get("/api/notes", function(req, res) {
         
-        readFileAsync('./db/db.json', 'utf8').then(function(contents) {
+        /*readFileAsync('./db/db.json', 'utf8').then(function(contents) {
              res.json(JSON.parse(contents));
+        });*/
+
+        new noteTaker().getNotes().then(function(notes){
+           // console.log(notes);
+            res.json(notes);
         });
+        
 
     });
 
